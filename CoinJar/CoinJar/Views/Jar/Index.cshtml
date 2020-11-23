@@ -1,0 +1,36 @@
+﻿@using System.Globalization;
+@{
+    ViewData["Title"] = "Jar Page";
+}
+@model CoinBase.Models.JarModel
+
+
+<div class="text-center">
+    <h1 class="display-4">CoinBase Coin Storage</h1>
+    <p>Insert your coins to find out if it fills your jar!.</p>
+</div>
+
+<div id="container">
+    <div id="left_coinage" class="d-flex">
+
+        <div class="flex-column col-1">
+            @foreach (var coinKeys in Model.Coins)
+            {
+                <div>
+                    <button id="coin_button_@coinKeys.Key" class="btn btn-block btn-primary" onclick="InsertCoin('@coinKeys.Key')">@coinKeys.Key</button>
+                </div>
+            }
+        </div>
+
+    </div>
+    <div id="right_totals" class="flex-column">
+        <p>Totals</p>
+        <p id="total_coins">$0.00</p>
+        <button id="reset-totals" onclick="ResetTotals()">Reset</button>
+        <p id="full-jar-paragraph" style="color: red; display: none;">Jar Is Full</p>
+    </div>
+</div>
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/currency")
+@Scripts.Render("~/bundles/JarController")
+
